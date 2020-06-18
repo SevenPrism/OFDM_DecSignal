@@ -1,0 +1,27 @@
+function prob3
+p1s=zeros(1,len);
+p2s=zeros(1,len);
+p3s=zeros(1,len);
+p_scfde=zeros(1,len);
+p_pre=zeros(1,len);
+p=zeros(1,len);
+p_Tofdm=zeros(1,len);
+
+
+for n=1:len
+    x=ofdm_signal();
+    xa=abs(x);
+    x_pre=pre_ofdm_signal();
+    [y1,y2,y3,p1s(n),p2s(n),p3s(n)]=average(x,1,1);%p1s(n)为y1的PAPR，以此类推
+end
+
+ya1=abs(y1);
+ya2=abs(y2);
+ya3=abs(y3);
+[papr,prob]=ccdf1(p,len);
+[papr_pre,prob_pre]=ccdf1(p_pre,len);
+[papr3,prob3]=ccdf1(p3s,len);
+
+
+end
+
